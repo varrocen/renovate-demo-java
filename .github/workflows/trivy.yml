@@ -3,7 +3,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: build
+name: Trivy vulnerability scanner
 
 on:
   push:
@@ -30,6 +30,7 @@ jobs:
 
       - name: Build an image from Dockerfile
         run: |
+          mvn -B package --file pom.xml
           docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
 
       - name: Run Trivy vulnerability scanner
